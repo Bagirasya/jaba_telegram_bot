@@ -1,9 +1,12 @@
+import req
+import requests
+from config import API_link
 
 
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print('PyCharm')
+    updates = requests.get(API_link + "/getUpdates?offset=-1").json()
+    print(updates)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    message = updates['result'][0]['message']
+    chat_id = message['from']['id']
+    text = message['text']
